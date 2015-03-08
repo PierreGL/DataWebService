@@ -6,10 +6,10 @@
 	<parent>
 		<groupId>org.pgl.data-web-service</groupId>
 		<artifactId>data-web-service</artifactId>
-		<version>${project.version}</version>
+		<version>0.1</version>
 	</parent>
 	<artifactId>datasources</artifactId>
-	
+
 	<description>This module manage the data source type key/value.</description>
 
 	<name>datasources</name>
@@ -17,7 +17,7 @@
 		<dependency>
 			<groupId>org.pgl.data-web-service</groupId>
 			<artifactId>node-processing</artifactId>
-			<version>${project.version}</version>
+			<version>0.1</version>
 		</dependency>
 	</dependencies>
 </project>

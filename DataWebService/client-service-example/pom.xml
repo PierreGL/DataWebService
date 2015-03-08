@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>org.pgl.data-web-service</groupId>
 		<artifactId>data-web-service</artifactId>
-		<version>${project.version}</version>
+		<version>0.1</version>
 	</parent>
 	<artifactId>client-service-example</artifactId>
-	
+
 	<description>This module is an example of client to call the data web service project parent.</description>
-	
+
 	<name>client-service-example</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>

@@ -6,10 +6,10 @@
 	<parent>
 		<groupId>org.pgl.data-web-service</groupId>
 		<artifactId>data-web-service</artifactId>
-		<version>${project.version}</version>
+		<version>0.1</version>
 	</parent>
 	<artifactId>node-processing</artifactId>
-	
+
 	<description>This module manage a generic binary tree stored in memory.</description>
 
 	<name>node-processing</name>

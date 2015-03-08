@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>org.pgl.data-web-service</groupId>
 		<artifactId>data-web-service</artifactId>
-		<version>${project.version}</version>
+		<version>0.1</version>
 	</parent>
 	<artifactId>web-service</artifactId>
-	
+
 	<description>This module manage the service couch in a data web service project.</description>
-	
+
 	<packaging>war</packaging>
 	<name>web-service Maven Webapp</name>
 	<build>
@@ -34,36 +34,5 @@
 			<artifactId>jersey-servlet</artifactId>
 			<version>1.19</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.cxf</groupId> -->
-		<!-- <artifactId>cxf-rt-frontend-jaxws</artifactId> -->
-		<!-- <version>${cxf.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.cxf</groupId> -->
-		<!-- <artifactId>cxf-rt-frontend-jaxrs</artifactId> -->
-		<!-- <version>${cxf.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.cxf</groupId> -->
-		<!-- <artifactId>cxf-rt-transports-http</artifactId> -->
-		<!-- <version>${cxf.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.cxf</groupId> -->
-		<!-- <artifactId>cxf-rt-transports-http-jetty</artifactId> -->
-		<!-- <version>${cxf.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework</groupId> -->
-		<!-- <artifactId>spring-core</artifactId> -->
-		<!-- <version>${spring.version}</version> -->
-		<!-- </dependency> -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.springframework</groupId> -->
-		<!-- <artifactId>spring-web</artifactId> -->
-		<!-- <version>${spring.version}</version> -->
-		<!-- </dependency> -->
-
 	</dependencies>
 </project>
