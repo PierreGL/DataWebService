@@ -8,6 +8,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Few scenarios to test the client service example.
+ * */
 public class ClientDataServiceTestUnit {
     private List<String> lstScientistName = new ArrayList<String>();
     
@@ -18,6 +21,8 @@ public class ClientDataServiceTestUnit {
 	private String oneScientist;
 	private String otherScientist;
 	private String lastScientist;
+	
+	private final String SUFFIX_VALUE = "-value";
     
 	private ClientDataServiceExample client = new ClientDataServiceExample();
 	
@@ -40,7 +45,6 @@ public class ClientDataServiceTestUnit {
     	otherScientist = "Lavoisier";
     	lstScientistName.add(otherScientist);
     	lstScientistName.add("Ampere");
-    	lstScientistName.add("Seguin");
     	lstScientistName.add("Chevreul");
     	lstScientistName.add("Flachat");
     	lstScientistName.add("Navier");
@@ -53,34 +57,61 @@ public class ClientDataServiceTestUnit {
      * Create new datasource.
      * Insert set of values.
      * Get some representatives values.
-     * Remove some values.
-     * 
+     * Remove some representative values.
      * */
     @Test
-    public void scenario1(){
+    public void scenarioTest(){
         Random random = new Random ();
     	String newSource = sourceName+random.nextInt(100);;
-    	if(checkOk(client.createDatasource(newSource))){
+    	
+    	boolean datasourceCreated = checkHttpCodeSucceed(client.createDatasource(newSource));
+    	
+    	if(datasourceCreated){
         	for (String name : lstScientistName) {
-        		System.out.println(client.insert(newSource, name, name+"-value"));
+        		assertInsertName(newSource, name);
     		}
+        	        	
+        	assertRetrieveName(newSource, oneScientist);
+        	assertRetrieveName(newSource, otherScientist);
+        	assertRetrieveName(newSource, firstScientist);
+        	assertRetrieveName(newSource, lastScientist);
+        	assertRetrieveName(newSource, rootScientist);
         	
-        	System.out.println(client.retrieve(newSource, oneScientist));
-        	System.out.println(client.retrieve(newSource, otherScientist));
-        	System.out.println(client.retrieve(newSource, firstScientist));
-        	System.out.println(client.retrieve(newSource, rootScientist));
-        	System.out.println(client.retrieve(newSource, lastScientist));
-        	
-        	System.out.println(client.remove(newSource, oneScientist));
-        	System.out.println(client.retrieve(newSource, oneScientist));
+        	assertRemoveName(newSource, oneScientist);
+        	assertRemoveName(newSource, otherScientist);
+        	assertRemoveName(newSource, firstScientist);
+        	assertRemoveName(newSource, lastScientist);
+        	assertRemoveName(newSource, rootScientist);
     	}
 
     }
     
+    private void assertInsertName(String source, String name){
+    	String failMsg = "Insert "+name+" failed";
+		Assert.assertTrue(failMsg, checkHttpCodeSucceed(client.insert(source, name, name+SUFFIX_VALUE)));
+    }
+
+    
+    private void assertRetrieveName(String source, String name){
+    	String failMsg = "Retrieve "+name+" failed";
+    	String expectedValue = name+SUFFIX_VALUE;
+    	Assert.assertTrue(failMsg, expectedValue.equals(client.retrieve(source, name)));
+    }
+    
+    private void assertRemoveName(String source, String name){
+    	String failMsg = "Remove "+name+" failed";
+    	Assert.assertTrue(failMsg, checkHttpCodeSucceed(client.remove(source, name)));
+    	
+    	String failMsg2 = "The previoulsy removed "+name+" has been retrieved";
+    	Assert.assertTrue(failMsg2, client.retrieve(source, name) == null);
+    }
+    
     /**
-     * Check that HTTP response is between 200 and 299.
+     * Check that HTTP response has succeed.
+     * 
+     * @return return true if the code is between 200 and 299.
      * */
-    private boolean checkOk(int code){
+    private boolean checkHttpCodeSucceed(int code){
     	if(200 <= code && code < 300){
     		return true;
     	}

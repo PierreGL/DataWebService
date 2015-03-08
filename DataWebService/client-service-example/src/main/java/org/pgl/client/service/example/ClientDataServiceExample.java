@@ -1,6 +1,7 @@
 package org.pgl.client.service.example;
 
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response.Status;
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -49,10 +50,14 @@ public class ClientDataServiceExample {
     
     /**
      * Retrieve entity by key.
+     * 
+     * @return Value of entity, if not exist return null.
      * */
     public String retrieve(String source, String key){
 		System.out.println("retrieve source = "+source+" - key = "+key);
 
+		String result = null;
+		
        	Client client = Client.create();
     	WebResource resource = client.resource("http://localhost:8080/web-service/dataservice/retrieve");
     	
@@ -61,10 +66,15 @@ public class ClientDataServiceExample {
     	form.add("key", key);
     	
     	ClientResponse response = resource.type(MediaType.APPLICATION_JSON).post(ClientResponse.class, form);
-    	System.out.println(response.getStatus());
+    	int status = response.getStatus();
+    	System.out.println("+++"+status);
     	
-    	String str = response.getEntity(String.class);
-    	return str;
+    	if(Status.OK.getStatusCode() == status){
+    		result = response.getEntity(String.class);
+    		System.out.println(result);
+    	}
+    	
+    	return result;
     }
     
     /**
