@@ -17,6 +17,20 @@ public class DatasourcesManagerBinaryTreeImpl implements DatasourcesManager {
 	
 	NodeProcess<String, String> nodeProcess = new NodeProcessImpl<String, String>();
 	
+	private static DatasourcesManager instance;
+	
+	private DatasourcesManagerBinaryTreeImpl() {
+	}
+	
+	public static synchronized DatasourcesManager getInstance(){
+		if(instance == null){
+			instance = new DatasourcesManagerBinaryTreeImpl();
+		}
+		return instance;
+	}
+	
+	
+	
 	@Override
 	public boolean datasourceExist(String name) {		
 		boolean result = mapBinaryTree.containsKey(name);		
@@ -62,6 +76,7 @@ public class DatasourcesManagerBinaryTreeImpl implements DatasourcesManager {
 			Node<String, String> newNode = new NodeImpl<String, String>(key, value);
 			if(root == null){//The datasource exist but is empty. The node is root node
 				mapBinaryTree.put(name, newNode);
+				result = true;
 			}else{
 				result = root.addChild(newNode);//If the node already exists, addChild will return false.
 			}
