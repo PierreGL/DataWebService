@@ -1,6 +1,5 @@
 package org.pgl.client.service.example;
 
-import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
 import com.sun.jersey.api.client.Client;
@@ -13,6 +12,8 @@ import com.sun.jersey.api.representation.Form;
  * */
 public class ClientDataServiceExample {
 	
+	private final String SERVICE_URL = "http://localhost:8080/web-service/dataservice";
+	
 	/**
 	 * Create new datasource.
 	 * */
@@ -20,13 +21,16 @@ public class ClientDataServiceExample {
 		System.out.println("create : source = "+name);
 
     	Client client = Client.create();
-    	WebResource resource = client.resource("http://localhost:8080/web-service/dataservice/create");
+    	WebResource resource = client.resource(SERVICE_URL+"/create");
     	
     	Form form = new Form();
-    	form.add("name", name);
+    	form.add("source", name);
     	
-    	ClientResponse response = resource.type(MediaType.APPLICATION_JSON).post(ClientResponse.class, form);
-    	return response.getStatus();
+    	ClientResponse response = resource.post(ClientResponse.class, form);
+		int status = response.getStatus();
+    	System.out.println(status);
+
+    	return status;
     }
     
     /**
@@ -36,14 +40,14 @@ public class ClientDataServiceExample {
 		System.out.println("insert : source = "+source+" - key = "+key+" - value = "+value);
 
        	Client client = Client.create();
-    	WebResource resource = client.resource("http://localhost:8080/web-service/dataservice/insert");
+    	WebResource resource = client.resource(SERVICE_URL+"/insert");
     	
     	Form form = new Form();
-    	form.add("name", source);
+    	form.add("source", source);
     	form.add("key", key);
     	form.add("value", value);
     	
-    	ClientResponse response = resource.type(MediaType.APPLICATION_JSON).post(ClientResponse.class, form);
+    	ClientResponse response = resource.post(ClientResponse.class, form);
     	return response.getStatus();
 	
     }
@@ -59,20 +63,21 @@ public class ClientDataServiceExample {
 		String result = null;
 		
        	Client client = Client.create();
-    	WebResource resource = client.resource("http://localhost:8080/web-service/dataservice/retrieve");
+    	WebResource resource = client.resource(SERVICE_URL+"/retrieve");
     	
     	Form form = new Form();
-    	form.add("name", source);
+    	form.add("source", source);
     	form.add("key", key);
     	
-    	ClientResponse response = resource.type(MediaType.APPLICATION_JSON).post(ClientResponse.class, form);
+    	ClientResponse response = resource.post(ClientResponse.class, form);
+
     	int status = response.getStatus();
-    	System.out.println("+++"+status);
     	
     	if(Status.OK.getStatusCode() == status){
     		result = response.getEntity(String.class);
-    		System.out.println(result);
     	}
+		System.out.println(status + " " + result);
+
     	
     	return result;
     }
@@ -84,13 +89,14 @@ public class ClientDataServiceExample {
 		System.out.println("remove source = "+source+" - key = "+key);
 
        	Client client = Client.create();
-    	WebResource resource = client.resource("http://localhost:8080/web-service/dataservice/remove");
+    	WebResource resource = client.resource(SERVICE_URL+"/remove");
     	
     	Form form = new Form();
-    	form.add("name", source);
+    	form.add("source", source);
     	form.add("key", key);
     	
-    	ClientResponse response = resource.type(MediaType.APPLICATION_JSON).delete(ClientResponse.class, form);
+    	ClientResponse response = resource.delete(ClientResponse.class, form);
+
     	return response.getStatus();
     }
 }

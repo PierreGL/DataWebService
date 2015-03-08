@@ -1,15 +1,9 @@
 package org.pgl.node.processing;
 
 /**
- * Defined process could be able on tree node.
+ * Defined process which can be apply on tree node.
  * */
 public interface NodeProcess<K extends Comparable<K>, E> {
-    
-    //TODO
-//    /**
-//     * Search and return the entity with max value contented in the tree of node root.
-//     * */
-//    E findMax(Node<K, E> root);
     
     /**
      * Provides the Node in a tree matching with key.

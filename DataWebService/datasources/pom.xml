@@ -9,6 +9,9 @@
 		<version>${project.version}</version>
 	</parent>
 	<artifactId>datasources</artifactId>
+	
+	<description>This module manage the data source type key/value.</description>
+
 	<name>datasources</name>
 	<dependencies>
 		<dependency>

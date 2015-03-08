@@ -50,23 +50,6 @@ public class NodeImpl<K extends Comparable<K> & Serializable, E extends Serializ
         }
         
         return result;
-        
-//        if(node.getKey() > this.key){
-//            if(this.rightChild == null){
-//                node.setParent(this);
-//                this.rightChild = node;                
-//            }else{
-//                this.rightChild.addChild(node);
-//            }
-//        }else if(node.getKey() < this.key){
-//            if(this.leftChild == null){
-//                node.setParent(this);
-//                this.leftChild = node;
-//            }else{
-//                this.leftChild.addChild(node);
-//            }
-//        }
-        //The node already exist
     }
     
     @Override

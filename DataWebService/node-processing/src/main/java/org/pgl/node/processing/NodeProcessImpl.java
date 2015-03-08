@@ -1,36 +1,9 @@
 package org.pgl.node.processing;
 
 /**
- * @author pguilletlhomat
+ * Default implementation to NodeProcess.
  * */
 public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<K, E> {
-
-    //TODO
-//    @Override
-//    public E findMax(Node<K, E> root) {
-//
-//        K rootValue = root.getKey();
-//        K rightValueMax;
-//        K leftValueMax;
-//        Node<K, E> rightChild = root.getRightChild();
-//        Node<K, E> leftChild = root.getLeftChild();
-//
-//        if(rightChild != null){
-//            rightValueMax = findMax(rightChild);
-//        }else{
-//            rightValueMax = Integer.MIN_VALUE;
-//        }
-//
-//        if(leftChild != null){
-//            leftValueMax = findMax(leftChild);
-//        }else{
-//            leftValueMax = Integer.MIN_VALUE;
-//        }
-//
-//        int valueMax = getMaxValue(rootValue, leftValueMax, rightValueMax);
-//
-//        return valueMax;
-//    }
 
     @Override
     public Node<K, E> getNodeByKey(Node<K, E> root, K key) {
@@ -133,28 +106,4 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
             parent.addChild(rightChildNodeToRemove);
         }
     }
-
-    //TODO
-//    /**
-//     * Compare 3 int values and return the max.
-//     * */
-//    private int getMaxValue(int a, int b, int c){
-//        int result;
-//        if(a > b){
-//            if(a > c){
-//                result = a;
-//            }else{
-//                result = c;
-//            }
-//        }else{
-//            if(b > c){
-//                result = b;
-//            }else{
-//                result = c;
-//            }
-//        }
-//
-//        return result;
-//    }
-
 }

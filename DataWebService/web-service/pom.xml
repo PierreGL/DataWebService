@@ -9,6 +9,9 @@
 		<version>${project.version}</version>
 	</parent>
 	<artifactId>web-service</artifactId>
+	
+	<description>This module manage the service couch in a data web service project.</description>
+	
 	<packaging>war</packaging>
 	<name>web-service Maven Webapp</name>
 	<build>
