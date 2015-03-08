@@ -41,7 +41,7 @@ public interface DatasourcesManager {
 	boolean add(String name, String key, String value);
 	
 	/**
-	 * Remove a value in defined datasource. If does not exist, nothing happens.
+	 * Remove a value in defined datasource. If the datasource or the key does not exist, nothing is removed.
 	 * 
 	 * @param name Name of datasource.
 	 * @param key Key of value to remove.
@@ -50,7 +50,7 @@ public interface DatasourcesManager {
 	boolean remove(String name, String key);
 	
 	/**
-	 * Update value in defined source. If does not exist, nothing happens.
+	 * Update value in defined source. If the datasource or the key does not exist, nothing is updated.
 	 * 
 	 * @param name Name of datasource.
 	 * @param key Key of value to update.

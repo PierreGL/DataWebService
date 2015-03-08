@@ -72,14 +72,31 @@ public class DatasourcesManagerBinaryTreeImpl implements DatasourcesManager {
 
 	@Override
 	public boolean remove(String name, String key) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+
+		if(mapBinaryTree.containsKey(name)){
+			Node<String, String> root = mapBinaryTree.get(name);
+			if(root != null){
+				result = nodeProcess.removeNodeByKey(root, key);
+			}
+		}
+		
+		return result;
 	}
 
 	@Override
 	public boolean update(String name, String key, String value) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+
+		if(mapBinaryTree.containsKey(name)){
+			Node<String, String> root = mapBinaryTree.get(name);
+			if(root != null){
+				Node<String, String> updatedNode = new NodeImpl<String, String>(key, value);
+				result = nodeProcess.updateNode(root, updatedNode);
+			}
+		}
+		
+		return result;
 	}
 
 }
