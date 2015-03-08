@@ -5,10 +5,10 @@ import java.util.Random;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.node.processing.Node;
-import org.node.processing.NodeImpl;
-import org.node.processing.NodeProcess;
-import org.node.processing.NodeProcessImpl;
+import org.pgl.node.processing.Node;
+import org.pgl.node.processing.NodeImpl;
+import org.pgl.node.processing.NodeProcess;
+import org.pgl.node.processing.NodeProcessImpl;
 
 public class NodeProcessTestUnit {
     
@@ -17,6 +17,7 @@ public class NodeProcessTestUnit {
     private Node<Integer, Integer> nodeRoot;
     private int[] arrayValues;
 
+    private int rootValue;
     private int firstValue;
     private int anyValue;
     private int lastValue;
@@ -37,7 +38,7 @@ public class NodeProcessTestUnit {
      * */
     public void createTree(){        
         Random random = new Random ();
-        int rootValue = random.nextInt(100);
+        this.rootValue = random.nextInt(100);
         this.nodeRoot = new NodeImpl<Integer, Integer>(rootValue);
         this.arrayValues = new int[50];
         
@@ -96,21 +97,26 @@ public class NodeProcessTestUnit {
         boolean firstIsRemoved = this.nodeProcess.removeNodeByKey(this.nodeRoot, this.firstValue);
         boolean anyIsRemoved = this.nodeProcess.removeNodeByKey(this.nodeRoot, this.anyValue);
         boolean lastIsRemoved = this.nodeProcess.removeNodeByKey(this.nodeRoot, this.lastValue);
+        boolean rootIsRemoved = this.nodeProcess.removeNodeByKey(this.nodeRoot, this.rootValue);
+
         
         //If the nodes has been removed the return value is true
         Assert.assertTrue("The first node ["+this.firstValue+"] has not been removed", firstIsRemoved); 
         Assert.assertTrue("The any node ["+this.anyValue+"] has not been removed", anyIsRemoved); 
         Assert.assertTrue("The last node ["+this.lastValue+"] has not been removed", lastIsRemoved); 
-        
+        Assert.assertTrue("The root node ["+this.rootValue+"] has not been removed", rootIsRemoved); 
+
         //If a nodes has been removed no node returned, then the value is null.
         Node<Integer, Integer> nodeFirst = this.nodeProcess.getNodeByKey(this.nodeRoot, this.firstValue);
         Node<Integer, Integer> nodeAny = this.nodeProcess.getNodeByKey(this.nodeRoot, this.anyValue);
         Node<Integer, Integer> nodeLast = this.nodeProcess.getNodeByKey(this.nodeRoot, this.lastValue);
-        
+        Node<Integer, Integer> nodeRoot = this.nodeProcess.getNodeByKey(this.nodeRoot, this.rootValue);
+
         Assert.assertTrue("The first node ["+this.firstValue+"] exists again", nodeFirst == null); 
         Assert.assertTrue("The any node ["+this.anyValue+"] exists again", nodeAny == null); 
         Assert.assertTrue("The last node ["+this.lastValue+"] exists again", nodeLast == null); 
-    }
+        Assert.assertTrue("The root node ["+this.rootValue+"] exists again", nodeRoot == null); 
+}
     
     
 //    /**
