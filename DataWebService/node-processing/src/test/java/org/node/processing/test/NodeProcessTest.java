@@ -13,7 +13,7 @@ import org.pgl.node.processing.NodeProcessImpl;
 /**
  * Test unit to nodeProcess operations.
  * */
-public class NodeProcessTestUnit {
+public class NodeProcessTest {
 
 	private NodeProcess<Integer, Integer> nodeProcess;
 
@@ -56,11 +56,13 @@ public class NodeProcessTestUnit {
 
 	@Test
 	public void testAddNode(){
+		Assert.fail("Not implemented");
 		//TODO
 	}
 
 	@Test
 	public void testUpdateNode(){
+		Assert.fail("Not implemented");
 		//TODO
 	}
 

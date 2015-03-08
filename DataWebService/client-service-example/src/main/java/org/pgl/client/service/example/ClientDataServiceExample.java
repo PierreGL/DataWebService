@@ -1,5 +1,7 @@
 package org.pgl.client.service.example;
 
+import java.util.logging.Logger;
+
 import javax.ws.rs.core.Response.Status;
 
 import com.sun.jersey.api.client.Client;
@@ -12,13 +14,15 @@ import com.sun.jersey.api.representation.Form;
  * */
 public class ClientDataServiceExample {
 	
+	private static final Logger LOGGER = Logger.getLogger(ClientDataServiceExample.class.getSimpleName());
+	
 	private final String SERVICE_URL = "http://localhost:8080/web-service/dataservice";
 	
 	/**
 	 * Create new datasource.
 	 * */
     public int createDatasource(String name){
-		System.out.println("create : source = "+name);
+		LOGGER.info("source = "+name);
 
     	Client client = Client.create();
     	WebResource resource = client.resource(SERVICE_URL+"/create");
@@ -28,7 +32,7 @@ public class ClientDataServiceExample {
     	
     	ClientResponse response = resource.post(ClientResponse.class, form);
 		int status = response.getStatus();
-    	System.out.println(status);
+		LOGGER.fine("response status = "+status);
 
     	return status;
     }
@@ -37,7 +41,7 @@ public class ClientDataServiceExample {
      * Insert entity with key and value.
      * */
     public int insert(String source, String key, String value){
-		System.out.println("insert : source = "+source+" - key = "+key+" - value = "+value);
+		LOGGER.info("source = "+source+" - key = "+key+" - value = "+value);
 
        	Client client = Client.create();
     	WebResource resource = client.resource(SERVICE_URL+"/insert");
@@ -47,9 +51,11 @@ public class ClientDataServiceExample {
     	form.add("key", key);
     	form.add("value", value);
     	
-    	ClientResponse response = resource.post(ClientResponse.class, form);
-    	return response.getStatus();
-	
+    	ClientResponse response = resource.post(ClientResponse.class, form);		
+    	int status = response.getStatus();
+		LOGGER.fine("response status = "+status);
+    	
+    	return status;
     }
     
     /**
@@ -58,8 +64,8 @@ public class ClientDataServiceExample {
      * @return Value of entity, if not exist return null.
      * */
     public String retrieve(String source, String key){
-		System.out.println("retrieve source = "+source+" - key = "+key);
-
+		LOGGER.info("source = "+source+" - key = "+key);
+		
 		String result = null;
 		
        	Client client = Client.create();
@@ -72,13 +78,10 @@ public class ClientDataServiceExample {
     	ClientResponse response = resource.post(ClientResponse.class, form);
 
     	int status = response.getStatus();
-    	
     	if(Status.OK.getStatusCode() == status){
     		result = response.getEntity(String.class);
     	}
-		System.out.println(status + " " + result);
-
-    	
+		LOGGER.fine("response status = "+status+" - restrieve "+result);
     	return result;
     }
     
@@ -86,7 +89,7 @@ public class ClientDataServiceExample {
      * Remove entity by key.
      * */
     public int remove(String source, String key){
-		System.out.println("remove source = "+source+" - key = "+key);
+		LOGGER.info("source = "+source+" - key = "+key);
 
        	Client client = Client.create();
     	WebResource resource = client.resource(SERVICE_URL+"/remove");
@@ -96,7 +99,9 @@ public class ClientDataServiceExample {
     	form.add("key", key);
     	
     	ClientResponse response = resource.delete(ClientResponse.class, form);
-
-    	return response.getStatus();
+    	int status = response.getStatus();
+		LOGGER.fine("response status = "+status);
+    	
+    	return status;
     }
 }
