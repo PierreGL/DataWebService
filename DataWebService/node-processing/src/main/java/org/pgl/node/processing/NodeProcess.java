@@ -25,11 +25,11 @@ public interface NodeProcess<K extends Comparable<K>, E> {
      * Removes the Node defined by key in a tree.
      * 
      * @param root The root of tree.
-     * @param key The key of node to remove.    
+     * @param keyToRemove The key of node to remove.    
      * 
      * @return true if the node has been found and removed, else return false.
      **/
-    boolean removeNodeByKey(Node<K, E> root, K key);
+    boolean removeNodeByKey(Node<K, E> root, K keyToRemove);
     
     /**
      * Update the defined node in the tree of the root node.

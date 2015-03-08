@@ -57,7 +57,7 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
     }
 
     @Override
-    public boolean removeNodeByKey(Node<K, E> current, K key) {
+    public boolean removeNodeByKey(Node<K, E> current, K keyToRemove) {
         boolean result = false;
         
         Node<K, E> leftChild = current.getLeftChild();
@@ -66,23 +66,23 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
 
         //TODO treat case : root node to remove
         
-        if(key.compareTo(currentKey) < 0){
+        if(keyToRemove.compareTo(currentKey) < 0){
             if(leftChild != null){
-                if(leftChild.getKey() == key){
+                if(keyToRemove.equals(leftChild.getKey())){
                     removingLeft(current, leftChild);
                     result = true;
                 }else{
-                    result = removeNodeByKey(leftChild, key);
+                    result = removeNodeByKey(leftChild, keyToRemove);
                 }
             }//else inexisting child the key has not been found
 
-        }else if(key.compareTo(currentKey) > 0){
+        }else if(keyToRemove.compareTo(currentKey) > 0){
             if(rightChild != null){
-                if(rightChild.getKey() == key){
+                if(keyToRemove.equals(rightChild.getKey())){
                     removingRight(current, rightChild);
                     result = true;
                 }else{
-                    result = removeNodeByKey(rightChild, key);
+                    result = removeNodeByKey(rightChild, keyToRemove);
                 }
             }//else inexisting child the key has not been found
         }
