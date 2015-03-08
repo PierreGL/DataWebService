@@ -51,5 +51,6 @@
 		<module>node-processing</module>
 		<module>web-service</module>
     <module>datasources</module>
+    <module>client-service-example</module>
   </modules>
 </project>
