@@ -90,7 +90,7 @@ public class DataService {
 	
 	@Path("/remove")
 	@DELETE
-	public Response remove(@FormParam("name") String name, @PathParam("key") String key){
+	public Response remove(@FormParam("name") String name, @FormParam("key") String key){
 		System.out.println("Service remove : source = "+name+" - key = "+key);
 		
 		Response response;
