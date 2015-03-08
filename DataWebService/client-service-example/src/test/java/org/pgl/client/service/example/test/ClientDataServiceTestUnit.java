@@ -1,4 +1,4 @@
-package org.pgl.client.service.example;
+package org.pgl.client.service.example.test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,7 @@ import java.util.Random;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.pgl.client.service.example.ClientDataServiceExample;
 
 /**
  * Few scenarios to test the client service example. The server needs to be started.
