@@ -1,4 +1,4 @@
-package org.node.processing;
+package org.pgl.node.processing;
 
 /**
  * @author pguilletlhomat
@@ -64,6 +64,8 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
         Node<K, E> rightChild = current.getRightChild();
         K currentKey = current.getKey();
 
+        //TODO treat case : root node to remove
+        
         if(key.compareTo(currentKey) < 0){
             if(leftChild != null){
                 if(leftChild.getKey() == key){

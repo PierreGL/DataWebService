@@ -1,4 +1,4 @@
-package org.node.processing;
+package org.pgl.node.processing;
 
 /**
  * This interface represents a Node.

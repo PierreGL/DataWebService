@@ -5,9 +5,8 @@
   <parent>
     <groupId>org.pgl.data-web-service</groupId>
     <artifactId>data-web-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${project.version}</version>
   </parent>
   <artifactId>node-processing</artifactId>
   <name>node-processing</name>
-<!--   <url>http://maven.apache.org</url> -->
 </project>
