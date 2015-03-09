@@ -29,7 +29,7 @@ public class ClientDataServiceTestUnit {
 	private ClientDataServiceExample client = new ClientDataServiceExample();
 
 	@Before
-	public void initDataTests(){
+	public void initServiceTests(){
 		lstScientistName = new ArrayList<String>();
 		
 		rootScientist = "Seguin";
@@ -60,6 +60,8 @@ public class ClientDataServiceTestUnit {
 		Random random = new Random ();
 		newSource = sourceBaseName+"-"+random.nextInt(1000);;
 	}
+	
+	
 	
 	/**
 	 * Create new datasource.
