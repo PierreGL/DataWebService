@@ -5,14 +5,15 @@ It allow to deploy the service on a server and store and manipulate datas remote
 # Structure of project
 The structure of project is defined by maven. It is a modular project composed by a parent project (DataWebService) and several modules. 
 Note that the sub-modules can easily to be reused for other projects.
-The project is coded in java, it needs a JVM 8 and servlet container jee7 (like tomcat7, jetty,...)
+The project is coded in java, it needs a JVM 8 and servlet container JEE7 (like tomcat, jetty,...).
+It include lib Jersey (JAX-RS implementation), lib JUnit to perform test campaigns, customized binary tree.
 
 # Build the project
 To build the project :
 1/ install maven 3 on your engine.
 2/ Go to root of parent project (DataWebService/) in the same directory of pom.xml.
 3/ Enter in a shell "mvn install"
-=> The project is built. The artefact to run the project is "web-service.war". 
+=> The project is built (including run unit test). The artefact to run the project is "web-service.war". 
 It is located in DataWebService/web-services/
 
 # Run the project
