@@ -13,7 +13,7 @@
 	<description>This module manage the service couch in a data web service project.</description>
 
 	<packaging>war</packaging>
-	<name>web-service Maven Webapp</name>
+	<name>web-service</name>
 	<build>
 		<finalName>web-service</finalName>
 	</build>
