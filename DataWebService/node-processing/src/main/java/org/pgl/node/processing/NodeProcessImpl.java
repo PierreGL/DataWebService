@@ -12,18 +12,20 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
 
         K rootKey = root.getKey();
 
-        if(key.compareTo(rootKey) > 0){
-            Node<K, E> rightNode = root.getRightChild();
-            if(rightNode != null){
-                result = getNodeByKey(rightNode, key);
+        if(key != null && rootKey != null){
+            if(key.compareTo(rootKey) > 0){
+                Node<K, E> rightNode = root.getRightChild();
+                if(rightNode != null){
+                    result = getNodeByKey(rightNode, key);
+                }
+            }else if(key.compareTo(rootKey) <0){
+                Node<K, E> leftNode = root.getLeftChild();
+                if(leftNode != null){
+                    result = getNodeByKey(leftNode, key);
+                }
+            }else{//value == rootValue
+                result = root;
             }
-        }else if(key.compareTo(rootKey) <0){
-            Node<K, E> leftNode = root.getLeftChild();
-            if(leftNode != null){
-                result = getNodeByKey(leftNode, key);
-            }
-        }else{//value == rootValue
-            result = root;
         }
 
         return result;

@@ -11,7 +11,7 @@ import org.pgl.node.processing.NodeProcess;
 import org.pgl.node.processing.NodeProcessImpl;
 
 /**
- * Test unit to nodeProcess operations.
+ * Unit test to nodeProcess operations.
  * */
 public class NodeProcessTest {
 

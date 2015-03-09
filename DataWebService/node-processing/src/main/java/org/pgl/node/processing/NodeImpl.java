@@ -28,26 +28,32 @@ public class NodeImpl<K extends Comparable<K> & Serializable, E extends Serializ
     @Override
     public boolean addChild(Node<K, E> node){
         
-        boolean result;
+        boolean result = false;
         
-        if(node.getKey().compareTo(this.key) > 0){
-            if(this.rightChild == null){
-                node.setParent(this);
-                this.rightChild = node;
-                result = true;
-            }else{
-                result = this.rightChild.addChild(node);
+        if(node != null){
+            K nodeKey = node.getKey();
+            
+            if(nodeKey != null && this.key != null){
+                if(nodeKey.compareTo(this.key) > 0){
+                    if(this.rightChild == null){
+                        node.setParent(this);
+                        this.rightChild = node;
+                        result = true;
+                    }else{
+                        result = this.rightChild.addChild(node);
+                    }
+                }else if(nodeKey.compareTo(this.key) < 0){
+                    if(this.leftChild == null){
+                        node.setParent(this);
+                        this.leftChild = node;
+                        result = true;
+                    }else{
+                        result = this.leftChild.addChild(node);
+                    }
+                }else{
+                    result = false;
+                }
             }
-        }else if(node.getKey().compareTo(this.key) < 0){
-            if(this.leftChild == null){
-                node.setParent(this);
-                this.leftChild = node;
-                result = true;
-            }else{
-                result = this.leftChild.addChild(node);
-            }
-        }else{
-            result = false;
         }
         
         return result;
