@@ -102,6 +102,7 @@ public class ClientDataServiceTestUnit {
 			assertRemoveName(newSource, otherScientist);
 			assertRemoveName(newSource, firstScientist);
 			assertRemoveName(newSource, lastScientist);
+			assertRemoveName(newSource, rootScientist);
 		}
 	}
 

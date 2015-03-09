@@ -58,6 +58,8 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
                     result = removeNodeByKey(rightChild, keyToRemove);
                 }
             }//else inexisting child the key has not been found
+        }else{
+        	current = null;
         }
             
         return result;

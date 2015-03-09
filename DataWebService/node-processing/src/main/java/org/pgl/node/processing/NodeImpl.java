@@ -25,6 +25,7 @@ public class NodeImpl<K extends Comparable<K> & Serializable, E extends Serializ
         this.entity = entity;
     }
     
+    @Override
     public boolean addChild(Node<K, E> node){
         
         boolean result;
