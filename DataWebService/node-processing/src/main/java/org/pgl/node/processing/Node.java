@@ -16,6 +16,12 @@ public interface Node<K extends Comparable<K>, E> {
     E getEntity();
     
     /**
+     * Set entity.
+     * */
+    void setEntity(E entity);
+
+    
+    /**
      * Get the parent of this node.
      * 
      * @param Provides parent, if this node is a root node return null.
@@ -28,7 +34,6 @@ public interface Node<K extends Comparable<K>, E> {
      * @param parent New parent oF this node.
      * */
     void setParent(Node<K, E> parent);
-    
     
     /**
      * Get the right node of this node.
@@ -66,5 +71,10 @@ public interface Node<K extends Comparable<K>, E> {
      * 
      * @return true if the child has been added, false if not.
      * */
-    boolean addChild(Node<K, E> node);    
+    boolean addChild(Node<K, E> node);
+    
+    /**
+     * Set the key as null. Be equal to delete the tree, it is not possible if the node has children.
+     * */
+    void destroyKey();
 }

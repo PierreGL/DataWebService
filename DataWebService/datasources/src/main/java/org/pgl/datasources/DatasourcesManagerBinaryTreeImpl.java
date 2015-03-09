@@ -29,8 +29,6 @@ public class DatasourcesManagerBinaryTreeImpl implements DatasourcesManager {
 		return instance;
 	}
 	
-	
-	
 	@Override
 	public boolean datasourceExist(String name) {		
 		boolean result = mapBinaryTree.containsKey(name);		
@@ -92,8 +90,12 @@ public class DatasourcesManagerBinaryTreeImpl implements DatasourcesManager {
 		if(mapBinaryTree.containsKey(name)){
 			Node<String, String> root = mapBinaryTree.get(name);
 			if(root != null){
-				result = nodeProcess.removeNodeByKey(root, key);
-			}
+			    Node<String, String> rootUpdated = nodeProcess.removeNodeByKey(root, key);
+				if(rootUpdated != null){
+				    mapBinaryTree.put(name, rootUpdated);
+				    result = true;
+				}//Case : the key to remove does not exist : return false.
+			}//Case : the source does not exist return false.
 		}
 		
 		return result;

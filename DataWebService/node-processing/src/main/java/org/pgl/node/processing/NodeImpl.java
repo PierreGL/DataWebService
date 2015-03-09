@@ -54,6 +54,13 @@ public class NodeImpl<K extends Comparable<K> & Serializable, E extends Serializ
     }
     
     @Override
+    public void destroyKey() {
+        if(rightChild == null && leftChild == null){
+            this.key = null;
+        }
+    }
+    
+    @Override
     public K getKey() {
         return key;
     }
@@ -61,6 +68,11 @@ public class NodeImpl<K extends Comparable<K> & Serializable, E extends Serializ
     @Override
     public E getEntity() {
         return entity;
+    }
+    
+    @Override
+    public void setEntity(E entity) {
+        this.entity = entity;
     }
 
     @Override
