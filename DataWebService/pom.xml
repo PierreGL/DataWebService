@@ -5,7 +5,7 @@
 
 	<groupId>org.pgl.data-web-service</groupId>
 	<artifactId>data-web-service</artifactId>
-	<version>0.1</version>
+	<version>0.2</version>
 	<description>This project is a data web service type key/value</description>
 
 	<!-- <version>${data.webservice.version}</version> -->

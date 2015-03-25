@@ -4,7 +4,7 @@ package org.pgl.node.processing;
  * Defined process which can be apply on tree node.
  * */
 public interface NodeProcess<K extends Comparable<K>, E> {
-    
+
     /**
      * Provides the Node in a tree matching with key.
      * 
@@ -14,7 +14,7 @@ public interface NodeProcess<K extends Comparable<K>, E> {
      * @return return the Node if exist, else return null.
      * */
     Node<K, E> getNodeByKey(Node<K, E> root, K key);
-    
+
     /**
      * Removes the Node defined by key in a tree.
      * 
@@ -24,7 +24,7 @@ public interface NodeProcess<K extends Comparable<K>, E> {
      * @return Return the root node updated by removing, if none node removes return null. If all tree removed returns Node with children and key null.
      **/
     Node<K, E> removeNodeByKey(Node<K, E> root, K keyToRemove);
-    
+
     /**
      * Update the defined node in the tree of the root node.
      * 

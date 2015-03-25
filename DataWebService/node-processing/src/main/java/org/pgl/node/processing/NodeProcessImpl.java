@@ -34,35 +34,30 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
     @Override
     public Node<K, E> removeNodeByKey(Node<K, E> current, K keyToRemove) {
         Node<K, E> result = null;
-        
+
         Node<K, E> leftChild = current.getLeftChild();
         Node<K, E> rightChild = current.getRightChild();
         K currentKey = current.getKey();
-        
+
         if(keyToRemove.compareTo(currentKey) == 0){//Case : the root node has to be removed. The root is replaced.
             result = removingRoot(current);
         }else{
-            if(keyToRemove.compareTo(currentKey) < 0){//If node to remove exists : it is in left branch
-                if(leftChild != null){
-                    if(keyToRemove.equals(leftChild.getKey())){
-                        removingLeft(current, leftChild);
-                        result = current;
-                    }else{
-                        result = removeNodeByKey(leftChild, keyToRemove);
-                    }
-                }//else inexisting child the key has not been found
-
-            }else if(keyToRemove.compareTo(currentKey) > 0){//If node to remove exists : it is in right branch
-                if(rightChild != null){
-                    if(keyToRemove.equals(rightChild.getKey())){
-                        removingRight(current, rightChild);
-                        result = current;
-                    }else{
-                        result = removeNodeByKey(rightChild, keyToRemove);
-                    }
-                }//else inexisting child the key has not been found        }
+            if(keyToRemove.compareTo(currentKey) < 0 && leftChild != null){//If node to remove exists : it is in left branch
+                if(keyToRemove.equals(leftChild.getKey())){
+                    removingLeft(current, leftChild);
+                    result = current;
+                }else{
+                    result = removeNodeByKey(leftChild, keyToRemove);
+                }
+            }else if(keyToRemove.compareTo(currentKey) > 0 && rightChild != null){//If node to remove exists : it is in right branch
+                if(keyToRemove.equals(rightChild.getKey())){
+                    removingRight(current, rightChild);
+                    result = current;
+                }else{
+                    result = removeNodeByKey(rightChild, keyToRemove);
+                }
             }
-            
+
             //If null node to remove not found : return null recursively to indicate the impossible removing.
             //If not null return the current node to get the root.
             if(result != null){
@@ -72,7 +67,7 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
 
         return result;
     }
-    
+
     @Override
     public boolean updateNode(Node<K, E> root, Node<K, E> nodeToUpdate) {
         boolean result = false;
@@ -103,9 +98,9 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
      * else, the root node is returned with null key to indicate its deletion.
      * */
     private Node<K, E> removingRoot(Node<K, E> root){
-        
-        Node<K, E> newRoot;// = null;
-        
+
+        Node<K, E> newRoot;
+
         Node<K, E> leftChildRoot = root.getLeftChild();
         Node<K, E> rightChildRoot = root.getRightChild();
 
@@ -124,7 +119,7 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
         return newRoot;
     }
 
-    
+
     /**
      * Remove the node when it is left child, and if necessary, move the child of removed node.
      * */
@@ -143,7 +138,7 @@ public class NodeProcessImpl<K extends Comparable<K>, E> implements NodeProcess<
             parent.addChild(rightChildNodeToRemove);
         }
     }
-    
+
     /**
      * Remove the node when it is right child, and if necessary, move the child of removed node.
      * */

@@ -13,107 +13,106 @@ import org.pgl.node.processing.NodeProcessImpl;
  * */
 public class DatasourcesManagerBinaryTreeImpl implements DatasourcesManager {
 
-	Map<String, Node<String, String>> mapBinaryTree = new HashMap<String, Node<String, String>>();
-	
-	NodeProcess<String, String> nodeProcess = new NodeProcessImpl<String, String>();
-	
-	private static DatasourcesManager instance;
-	
-	private DatasourcesManagerBinaryTreeImpl() {
-	}
-	
-	public static synchronized DatasourcesManager getInstance(){
-		if(instance == null){
-			instance = new DatasourcesManagerBinaryTreeImpl();
-		}
-		return instance;
-	}
-	
-	@Override
-	public boolean datasourceExist(String name) {		
-		boolean result = mapBinaryTree.containsKey(name);		
-		return result;
-	}
+    Map<String, Node<String, String>> mapBinaryTree = new HashMap<String, Node<String, String>>();
 
-	@Override
-	public boolean createDatasource(String name) {
-		boolean result = false;
-		if(!mapBinaryTree.containsKey(name)){
-			mapBinaryTree.put(name, null);//Create empty tree
-			result = true;
-		}//else datasource already exists
-		
-		return result;
-	}
+    NodeProcess<String, String> nodeProcess = new NodeProcessImpl<String, String>();
 
-	@Override
-	public String get(String name, String key) {
-		
-		String result = null;
-		
-		//If tree exist and have a root node it is possible to search key
-		if(mapBinaryTree.containsKey(name)){
-			Node<String, String> root = mapBinaryTree.get(name);
-			if(root != null){
-				Node<String, String> nodeResult = nodeProcess.getNodeByKey(root, key);
-				if(nodeResult != null){
-					result = nodeResult.getEntity();
-				}
-			}
-		}
-		
-		return result;
-	}
+    private static DatasourcesManager instance;
 
-	@Override
-	public boolean add(String name, String key, String value) {
-		boolean result = false;
-		
-		if(mapBinaryTree.containsKey(name)){
-			Node<String, String> root = mapBinaryTree.get(name);
-			Node<String, String> newNode = new NodeImpl<String, String>(key, value);
-			if(root == null){//The datasource exist but is empty. The node is root node
-				mapBinaryTree.put(name, newNode);
-				result = true;
-			}else{
-				result = root.addChild(newNode);//If the node already exists, addChild will return false.
-			}
-		}
-		
-		return result;
-	}
+    private DatasourcesManagerBinaryTreeImpl() {
+    }
 
-	@Override
-	public boolean remove(String name, String key) {
-		boolean result = false;
+    public static synchronized DatasourcesManager getInstance(){
+        if(instance == null){
+            instance = new DatasourcesManagerBinaryTreeImpl();
+        }
+        return instance;
+    }
 
-		if(mapBinaryTree.containsKey(name)){
-			Node<String, String> root = mapBinaryTree.get(name);
-			if(root != null){
-			    Node<String, String> rootUpdated = nodeProcess.removeNodeByKey(root, key);
-				if(rootUpdated != null){
-				    mapBinaryTree.put(name, rootUpdated);
-				    result = true;
-				}//Case : the key to remove does not exist : return false.
-			}//Case : the source does not exist return false.
-		}
-		
-		return result;
-	}
+    @Override
+    public boolean datasourceExist(String name) {		
+        return mapBinaryTree.containsKey(name);
+    }
 
-	@Override
-	public boolean update(String name, String key, String value) {
-		boolean result = false;
+    @Override
+    public boolean createDatasource(String name) {
+        boolean result = false;
+        if(!mapBinaryTree.containsKey(name)){
+            mapBinaryTree.put(name, null);//Create empty tree
+            result = true;
+        }//else datasource already exists
 
-		if(mapBinaryTree.containsKey(name)){
-			Node<String, String> root = mapBinaryTree.get(name);
-			if(root != null){
-				Node<String, String> updatedNode = new NodeImpl<String, String>(key, value);
-				result = nodeProcess.updateNode(root, updatedNode);
-			}
-		}
-		
-		return result;
-	}
+        return result;
+    }
+
+    @Override
+    public String get(String name, String key) {
+
+        String result = null;
+
+        //If tree exist and have a root node it is possible to search key
+        if(mapBinaryTree.containsKey(name)){
+            Node<String, String> root = mapBinaryTree.get(name);
+            if(root != null){
+                Node<String, String> nodeResult = nodeProcess.getNodeByKey(root, key);
+                if(nodeResult != null){
+                    result = nodeResult.getEntity();
+                }
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public boolean add(String name, String key, String value) {
+        boolean result = false;
+
+        if(mapBinaryTree.containsKey(name)){
+            Node<String, String> root = mapBinaryTree.get(name);
+            Node<String, String> newNode = new NodeImpl<String, String>(key, value);
+            if(root == null){//The datasource exist but is empty. The node is root node
+                mapBinaryTree.put(name, newNode);
+                result = true;
+            }else{
+                result = root.addChild(newNode);//If the node already exists, addChild will return false.
+            }
+        }
+
+        return result;
+    }
+
+    @Override
+    public boolean remove(String name, String key) {
+        boolean result = false;
+
+        if(mapBinaryTree.containsKey(name)){
+            Node<String, String> root = mapBinaryTree.get(name);
+            if(root != null){
+                Node<String, String> rootUpdated = nodeProcess.removeNodeByKey(root, key);
+                if(rootUpdated != null){
+                    mapBinaryTree.put(name, rootUpdated);
+                    result = true;
+                }//Case : the key to remove does not exist : return false.
+            }//Case : the source does not exist return false.
+        }
+
+        return result;
+    }
+
+    @Override
+    public boolean update(String name, String key, String value) {
+        boolean result = false;
+
+        if(mapBinaryTree.containsKey(name)){
+            Node<String, String> root = mapBinaryTree.get(name);
+            if(root != null){
+                Node<String, String> updatedNode = new NodeImpl<String, String>(key, value);
+                result = nodeProcess.updateNode(root, updatedNode);
+            }
+        }
+
+        return result;
+    }
 
 }
