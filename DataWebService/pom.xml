@@ -14,6 +14,13 @@
 	<name>DataWebService</name>
 	<url>http://maven.apache.org</url>
 
+	<modules>
+		<module>node-processing</module>
+		<module>web-service</module>
+		<module>datasources</module>
+		<module>client-service-example</module>
+	</modules>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
@@ -54,10 +61,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<modules>
-		<module>node-processing</module>
-		<module>web-service</module>
-		<module>datasources</module>
-		<module>client-service-example</module>
-	</modules>
+
 </project>
